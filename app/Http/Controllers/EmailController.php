@@ -11,7 +11,7 @@ class EmailController extends Controller
 {
     function index()
     {
-        return view('home');
+        return view('welcome');
     }
 
     function show()
@@ -51,7 +51,7 @@ class EmailController extends Controller
         $newMessage->save();
 
 
-        Mail::to('andradaa.didaa@gmail.com')->send(new SendEmail($data));
+        Mail::to('andradatest14@gmail.com')->send(new SendEmail($data));
         return back()->with('success', 'Mulțumim ca ne-ați contactat!');
     }
 }

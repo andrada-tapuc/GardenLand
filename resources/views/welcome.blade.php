@@ -49,6 +49,9 @@
                     <li>
                         <a class="portofolio-link" href="#portofoliu" >Portofoliul</a>
                     </li>
+                    <li>
+                        <a class="contact-link"  href="#contact" >Contact</a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -76,22 +79,26 @@
                         @endforeach
                     </div>
                 </li>
-                <li  class="drop-down-2">
+                <li>
+{{--                <li  class="drop-down-2">--}}
                     <a class="products-link" href="#">Produse</a>
-                    <div class="mega-menu-2 fadeIn animated">
-                    @foreach($allProdCat as $categ)
-                        <div class="mm-3column">
-                                <span class="categories-list">
-                                    <ul>
-                                        <span>{{$categ->name_category}}</span>
-                                    </ul>
-                                </span>
-                        </div>
-                     @endforeach
-            </div>
+{{--                    <div class="mega-menu-2 fadeIn animated">--}}
+{{--                    @foreach($allProdCat as $categ)--}}
+{{--                        <div class="mm-3column">--}}
+{{--                                <span class="categories-list">--}}
+{{--                                    <ul>--}}
+{{--                                        <span>{{$categ->name_category}}</span>--}}
+{{--                                    </ul>--}}
+{{--                                </span>--}}
+{{--                        </div>--}}
+{{--                     @endforeach--}}
+{{--            </div>--}}
                 </li>
                 <li>
                     <a class="portofolio-link"  href="#portofoliu" >Portofoliu</a>
+                </li>
+                <li>
+                    <a class="contact-link"  href="#contact" >Contact</a>
                 </li>
             </ul>
         </nav>
@@ -228,7 +235,7 @@
             @endforeach
         </ul>
         <div class="col text-center button-all-services">
-            <a href="#link" class="btn btn-default btn-dark" role="button">Toate serviciile</a>
+            <a href="#link" class="btn btn-default btn-dark services-link" role="button">Toate serviciile</a>
         </div>
     </div>
 

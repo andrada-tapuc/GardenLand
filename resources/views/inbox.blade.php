@@ -12,6 +12,7 @@
                             <th>Mesaj</th>
                             <th>Email</th>
                             <th>Telefon</th>
+                            <th>Data și ora (+3h)</th>
                             <th>Ștergere</th>
                         </thread>
 
@@ -22,6 +23,7 @@
                                 <td>{{$msg->message}}</td>
                                 <td>{{$msg->email}}</td>
                                 <td>{{$msg->phone_number}}</td>
+                                <td>{{$msg->created_at}}</td>
                                 <td>
                                     <p data-placement="top" data-toggle="tooltip" title="Delete">
                                         <a href="{{route('inbox.destroy', $msg->message_id)}}" onclick="if(confirm('Are you sure you want to delete this message?'))

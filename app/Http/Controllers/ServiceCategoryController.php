@@ -38,7 +38,7 @@ class ServiceCategoryController extends Controller
             'allProducts' =>Product::all(),
             'firstProd' => Product::all()->take(4),
             'nextProd' => Product::all()->slice(4)->take(4),
-            'images' =>Image_Category::all(),
+            'images' =>Image_Category::all()->take(4),
             ]);
     }
 

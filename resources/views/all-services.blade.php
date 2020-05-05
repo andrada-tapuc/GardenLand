@@ -47,11 +47,11 @@
                     <li>
                         <a class="products-link" href="#">Produse</a>
                     </li>
-{{--                    <li>--}}
-{{--                        <a href="#">Echipă</a>--}}
-{{--                    </li>--}}
                     <li>
                         <a class="portofolio-link" href="#portofoliu">Portofoliul</a>
+                    </li>
+                    <li>
+                        <a class="contact-link-serv"  href="#contact" >Contact</a>
                     </li>
                 </ul>
             </nav>
@@ -80,28 +80,14 @@
                         @endforeach
                     </div>
                 </li>
-                <li class="drop-down-2">
+                <li>
                     <a class="products-link" href="#">Produse</a>
-                    <div class="mega-menu-2 fadeIn animated">
-                        @foreach($allProdCat as $categ)
-                            <div class="mm-3column">
-                                <span class="categories-list">
-                                    <ul>
-                                        <span>{{$categ->name_category}}</span>
-{{--                                        @foreach($categ->childrenCategories as $cat_child)--}}
-{{--                                            <a><li><button type="button" class="btn" data-toggle="modal" data-target="#modal-prod{{$cat_child->id}}">{{$cat_child->name_category}}</button></li></a>--}}
-{{--                                        @endforeach--}}
-                                    </ul>
-                                </span>
-                            </div>
-                        @endforeach
-                    </div>
                 </li>
-{{--                <li>--}}
-{{--                    <a href="#">Echipa</a>--}}
-{{--                </li>--}}
                 <li>
                     <a class="portofolio-link" href="#portofoliu">Portofoliu</a>
+                </li>
+                <li>
+                    <a class="contact-link-serv"  href="#contact" >Contact</a>
                 </li>
             </ul>
         </nav>
@@ -265,58 +251,72 @@
 </section>
 
 <section id="contact" class="sec-contact">
-    <div class="container contact-section" id="contact-section">
+    <div class=" container contact-section" id="contact-section">
         <h1>Contactează-ne </h1>
+
         <hr />
+
         <div class="row">
-            <div class="form-group form-row" style="display: none">
-                <div class="alert alert-success" role="alert">
-                    Mesajul tau a fost trimis cu succes. Te vom contacta in cel mai scurt timp. Multumim!
+            @if(count($errors) > 0 )
+                <div class="form-group form-row">
+                    <div class="alert alert-danger" role="alert" hidden>
+                        @lang('messages.message-errorsend')
+                    </div>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
-            </div>
+            @endif
+            @if($message = Session::get('success'))
+                <div class="form-group form-row" style="display: none">
+                    <div class="alert alert-success" role="alert">
+                        Mesajul tău a fost trimis cu succes. Te vom contacta în cel mai scurt timp. Mulțumim!
+                    </div>
+                </div>
+            @endif
             <div class="form-group form-row">
                 <div class="alert alert-danger" role="alert"  style="display: none">
-                    Mesajul nu s-a trimis te rugam sa incerci din nou.
+                    Mesajul nu s-a trimis, te rugam sa incerci din nou.
                 </div>
             </div>
             <form method="post" action="{{ route('send') }}" class="col col-sm-8 offset-ms-2 col-lg-6 offset-lg-3 contact-form">
                 {{ csrf_field() }}
-
                 <div class="form-group form-row">
                     <div class="col">
                         <label>Nume și prenume:</label>
-                        <input type="text" class="form-control" placeholder="Nume">
+                        <input type="text" class="form-control" name="name" placeholder="Nume și prenume">
                     </div>
                 </div>
                 <div class="form-group form-row">
                     <div class="col">
                         <label>Adresa de email:</label>
-                        <input type="email" class="form-control" placeholder="Email">
+                        <input type="email" class="form-control" name="email" placeholder="Email">
                     </div>
                 </div>
                 <div class="form-group form-row">
                     <div class="col">
-                        <label>Numar de telefon:</label>
-                        <input type="number" class="form-control" placeholder="Telefon">
+                        <label>Număr de telefon:</label>
+                        <input type="number" class="form-control" name="phone" placeholder="Telefon">
                     </div>
                 </div>
 
                 <div class="form-group form-row">
                     <div class="col">
-                        <label>Mesajul:</label>
-                        <textarea type="text" class="form-control" placeholder="Scrieți mesajul dumneavoastră..."></textarea>
+                        <label>Mesajul tău:</label>
+                        <textarea type="text" class="form-control" name="message" placeholder="Scrieți mesajul dumneavoastră..."></textarea>
                     </div>
                 </div>
                 <div class="form-group form-row">
                     <div class="col">
-                        <input type="submit" class="btn btn-primary" value="Trimite Mesaj">
+                        <input type="submit" class="btn btn-primary" name="send"  value="Trimite Mesajul">
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </section>
-
 <footer class="container-fluid">
     <div class="row"><span class="copy">@Copyright GardenLand</span></div>
 </footer>

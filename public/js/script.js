@@ -56,19 +56,14 @@ window.addEventListener('load', function() {
 function lazyLoad() {
     var card_images = document.querySelectorAll('.card-image');
 
-    // loop over each card image
     card_images.forEach(function(card_image) {
         var image_url = card_image.getAttribute('data-image-full');
         var content_image = card_image.querySelector('img');
 
-        // change the src of the content image to load the new high res photo
         content_image.src = image_url;
 
-        // listen for load event when the new photo is finished loading
         content_image.addEventListener('load', function() {
-            // swap out the visible background image with the new fully downloaded photo
             card_image.style.backgroundImage = 'url(' + image_url + ')';
-            // add a class to remove the blur filter to smoothly transition the image change
             card_image.className = card_image.className + ' is-loaded';
         });
     });
@@ -124,14 +119,14 @@ $(document).ready( function() {
         $cards.show();
     });
 
-    $supercategories = $('.card-supercategory');
-    $supercategories.click(function(e){
-       let id = $(this).attr('data-category');
-       var name_super = $(this).attr('data-name');
-       window.location.href = "/services?"+ name_super +'/' + id;
-    });
+    // $supercategories = $('.card-supercategory');
+    // $supercategories.click(function(e){
+    //    let id = $(this).attr('data-category');
+    //    var name_super = $(this).attr('data-name');
+    //    window.location.href = "/services?"+ name_super +'/' + id;
+    // });
 
-    if(window.location.href.split('?').pop() !== '' && window.location.href.indexOf("?") > -1) {
+    if(window.location.href.split('?').pop() !== '' && window.location.href.indexOf("services?") > -1) {
         let index = window.location.href.split('/').pop();
         $cards.hide();
         $('.card[data-category="' + index + '"]').show();
@@ -160,15 +155,24 @@ $(document).ready( function() {
        $subcat.each(function(){
           subcategories.push($(this).attr('data-target'));
        });
-        // let name_super = $(this).attr('data-name');
-        // let id = $(this).attr('id');
-        // window.location.href = "/produse?"+ name_super +'/' + id;
-        $cards_products.hide();
+        let name_super = $(this).attr('data-name');
+        var ids = '';
         subcategories.forEach(function(i){
+            ids = ids + '-' + i;
+        });
+        window.location.href = "/produse?"+ name_super +'/' + ids;
+        console.log("/produse?"+ name_super +'/' + ids);
+    });
+
+    if(window.location.href.split('?').pop() !== '' && window.location.href.indexOf("produse?") > -1) {
+        let indexes = window.location.href.split('/').pop();
+        indexes = indexes.split('-');
+        console.log(indexes);
+        $cards_products.hide();
+        indexes.forEach(function(i) {
             $('.card-product[data-category="' + i + '"]').show();
         });
-        console.log(subcategories);
-    });
+    }
 
     $('.btn-all-products').click(function() {
         window.location.href = "/produse";
@@ -204,10 +208,16 @@ $(document).ready( function() {
     });
 
     $('.portofolio-link').click(function(e){
-        // e.preventDefault();
-        // $(".sec-portofolio").animate({scrollTop: $(document).height() + $(window).height()});
-        // return false;
         window.location.href = "/#portofoliu";
+    });
+    $('.contact-link').click(function(e){
+        window.location.href = "/#contact";
+    });
+    $('.contact-link-serv').click(function(e){
+        window.location.href = "/services/#contact";
+    });
+    $('.contact-link-prod').click(function(e){
+        window.location.href = "/produse/#contact";
     });
 });
 
