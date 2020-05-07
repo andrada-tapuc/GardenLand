@@ -114,7 +114,6 @@
 
         $(document).on('click', '.delete-image', function (e) {
             e.preventDefault();
-            console.log('gewgewgw');
             var imageId = $(this).parents('div').attr('data-id');
             $.ajax({
                 type: "post",
@@ -122,6 +121,7 @@
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 url: '/admin/services/destroy/image',
                 success: function (data) {
+                    window.location.href = "/admin/services/show";
                 }
             });
         });

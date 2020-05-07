@@ -14,7 +14,18 @@ return [
     */
 
     'default' => env('MAIL_MAILER', 'smtp'),
-
+    'stream' => [
+        'ssl' => [
+            'allow_self_signed' => true,
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+        ],
+        'tsl' => [
+            'allow_self_signed' => true,
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+        ],
+    ],
     /*
     |--------------------------------------------------------------------------
     | Mailer Configurations
@@ -32,15 +43,14 @@ return [
     |            "postmark", "log", "array"
     |
     */
-
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-            'port' => env('MAIL_PORT', 465),
-            'encryption' => env('MAIL_ENCRYPTION', ''),
-            'username' => env('MAIL_USERNAME'),
-            'password' => env('MAIL_PASSWORD'),
+            'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+            'port' => env('MAIL_PORT', 587),
+            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+            'username' => env('andradatest14@gmail.com'),
+            'password' => env('testandrada'),
         ],
 
         'ses' => [
@@ -74,8 +84,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'andradaa.didaa@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example Name'),
+        'address' => env('MAIL_FROM_ADDRESS', 'andradatest14@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Site name'),
     ],
 
     /*

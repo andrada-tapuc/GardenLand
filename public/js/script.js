@@ -138,6 +138,10 @@ $(document).ready( function() {
     $('.home-link').click(function(){
         window.location.href = "/";
     });
+    $('.title-page').click(function(){
+        window.location.href = "/";
+    });
+
     $('.products-link').click(function(){
         window.location.href = "/produse";
     });

@@ -123,22 +123,22 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ProductsAdministration" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Work\Gardenland\storage\app\public\categories" />
-      <recent name="E:\Work\Gardenland\storage\app\public" />
-      <recent name="E:\Work\Gardenland\public\img" />
-      <recent name="E:\Work\Gardenland\public" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Work\Gardenland\app" />
       <recent name="E:\Work\Gardenland\storage\app\public\categories" />
       <recent name="E:\Work\Gardenland\public\img\slider" />
       <recent name="E:\Work\Gardenland\public\img" />
       <recent name="E:\Work\Gardenland\public\font-awesome-4.7.0\css" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Work\Gardenland\storage\app\public\categories" />
+      <recent name="E:\Work\Gardenland\storage\app\public" />
+      <recent name="E:\Work\Gardenland\public\img" />
+      <recent name="E:\Work\Gardenland\public" />
     </key>
   </component>
   <component name="RunManager">
@@ -195,7 +195,10 @@
       <workItem from="1588350983546" duration="14253000" />
       <workItem from="1588438479174" duration="9690000" />
       <workItem from="1588583854254" duration="15709000" />
-      <workItem from="1588661951385" duration="13884000" />
+      <workItem from="1588661951385" duration="15102000" />
+      <workItem from="1588685782273" duration="13423000" />
+      <workItem from="1588750275118" duration="5498000" />
+      <workItem from="1588838226050" duration="4879000" />
     </task>
     <servers />
   </component>
@@ -211,26 +214,26 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2131" y="178" key="#Options/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1584346192664" />
-    <state x="730" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587647100476">
+    <state x="730" y="322" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1588762976290">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="730" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1587647100476" />
+    <state x="730" y="322" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1588762976290" />
     <state x="714" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1586189295827">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="714" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1586189295827" />
-    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1587651174791">
+    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1588867137961">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1587651174791" />
+    <state x="690" y="274" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1588867137961" />
     <state x="644" y="174" width="645" height="691" key="#phpunit.xml" timestamp="1587662559526">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="644" y="174" width="645" height="691" key="#phpunit.xml/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1587662559526" />
-    <state x="399" y="274" key="FileChooserDialogImpl" timestamp="1588355168483">
+    <state x="399" y="274" key="FileChooserDialogImpl" timestamp="1588763440492">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="399" y="274" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1588355168483" />
+    <state x="399" y="274" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1588763440492" />
     <state x="2319" y="274" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1584346198261" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1584041611597">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -264,5 +267,9 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2065" y="45" width="809" height="909" maximized="true" key="dock-window-1/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1586279230853" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1588710207701">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1588710207701" />
   </component>
 </project>

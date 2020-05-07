@@ -114,15 +114,15 @@
 
                 $(document).on('click', '.delete-image', function (e) {
                     e.preventDefault();
-                    console.log('gewgewgw');
                     var imageId = $(this).parents('div').attr('data-id');
+                    console.log(imageId);
                     $.ajax({
                         type: "post",
                         data: {'imageId': imageId},
                         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                         url: '/admin/products/destroy/image',
                         success: function (data) {
-                            console.log('success');
+                            window.location.href = "/admin/products/show";
                         }
                     });
                 });

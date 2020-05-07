@@ -8,6 +8,8 @@
             <br/>
             <a href="/admin/categories/products/create"><button class="btn btn-primary button-new">+ Crează Categorie</button></a> <br/><br/>
             @if(count($allCategories) > 0)
+                <h6>*Ștergerea unei categorii, va șterge și produsele sale.</h6>
+
                 <div class="table-responsive">
                     <table id="mytable" class="table table-bordered table-striped">
                         <thread>
