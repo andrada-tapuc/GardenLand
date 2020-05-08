@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>GardenLand - Produse</title>
+    <title >GardenLand - Produse</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -30,7 +30,7 @@
         </div>
         <div class="container p-0">
             <nav class="navbar navbar-expand-lg navbar-light ">
-                <a class="navbar-brand pull-right" href="#">Garden Land</a>
+                <a class="navbar-brand pull-right title-page" href="#">Garden Land</a>
                 <p class="navbar-subtitle">Din generație în generație, cu eleganță și încredere!</p>
             </nav>
         </div>
@@ -68,7 +68,7 @@
                             <div class="mm-3column">
                                 <span class="categories-list">
                                     <ul>
-                                        <span>{{$cat->name_category}}</span>
+                                        <a href="#" id="{{$cat->id}}" data-name="{{$cat->name_category}}" class="category-click-service"><span>{{$cat->name_category}}</span></a>
                                         @foreach($allServices as $serv)
                                             @if($serv->category_id === $cat->id)
                                                 <a><li><button type="button" class="btn" data-toggle="modal" data-target="#modal{{$serv->id}}">{{$serv->name}}</button></li></a>
@@ -148,8 +148,8 @@
                                         </div>
                                         @foreach($prod->image->skip(1) as $img)
                                             <div class="carousel-item" data-id="{{$img->id}}">
-                                                <img class="slider-modal-img" src="{{asset('storage/products/'. $prod->image->first()->name)}}" alt="Second slide">
-                                                <h2 class="h2-slide-title">{{$prod->image->first()->title}}</h2>
+                                                <img class="slider-modal-img" src="{{asset('storage/products/'. $img->name)}}" alt="Second slide">
+                                                <h2 class="h2-slide-title">{{$img->title}}</h2>
                                             </div>
                                         @endforeach
                                     </div>
@@ -228,7 +228,7 @@
                 @foreach($allProducts as $prod)
                     <div class="card card-product" id="{{$prod->id}}" data-category="{{$prod->category->id}}">
                         <div class="card__image-holder">
-                            <img class="card__image" src="{{asset('storage/products/'.$prod->image->last()->name)}}" alt="wave" />
+                            <img class="card__image" src="{{asset('storage/products/'.$prod->image->first()->name)}}" alt="wave" />
                         </div>
                         <div class="card-title">
                             <a href="#" class="toggle-info btn">

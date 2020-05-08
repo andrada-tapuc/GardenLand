@@ -10,14 +10,6 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-//    public function index()
-//    {
-//        return view('home',[
-//            'productsList' => Product::index(),
-//            'newProducts' => Product::newProducts()
-//        ]);
-//    }
-
     public function create()
     {
         return view('products.create')->with([
@@ -55,16 +47,15 @@ class ProductController extends Controller
         $product->time_exec = $request->get('time_exec');
         $product->save();
 
-
         $image1 = new Image_Product;
         $image1->product_id = $product->id;
         if($request->hasFile('image1')) {
-            $file = $request->file('image1');
-            $image1->name = $product->name . '_' . $file->getClientOriginalName();
-            if (!empty($file))
-                Storage::put('public/products/' . $image1->name, file_get_contents($request->file('image1')->getRealPath()));
             $image1->title = $request->get('title1');
             $image1->description = $request->get('description1');
+            $file = $request->file('image1');
+            $image1->name = $product->name . str_replace(" ", "-",$image1->title) . '_' . str_replace(" ", "-", $file->getClientOriginalName());
+            if (!empty($file))
+                Storage::put('public/products/' . $image1->name, file_get_contents($request->file('image1')->getRealPath()));
             $image1->save();
         }
 
@@ -72,11 +63,11 @@ class ProductController extends Controller
             $image2 = new Image_Product;
             $image2->product_id = $product->id;
             $file = $request->file('image2');
-            $image2->name = $product->name . '_' . $file->getClientOriginalName();
+            $image2->title = $request->get('title2');
+            $image2->name = $product->name . str_replace(" ", "-",$image2->title) . '_' . str_replace(" ", "-", $file->getClientOriginalName());
+            $image2->description = $request->get('description2');
             if (!empty($file))
                 Storage::put('public/products/' . $image2->name, file_get_contents($request->file('image2')->getRealPath()));
-            $image2->title = $request->get('title2');
-            $image2->description = $request->get('description2');
             $image2->save();
         }
 
@@ -84,14 +75,13 @@ class ProductController extends Controller
             $image3 = new Image_Product;
             $image3->product_id = $product->id;
             $file = $request->file('image3');
-            $image3->name = $product->name . '_' . $file->getClientOriginalName();
+            $image3->title = $request->get('title3');
+            $image3->name = $product->name . str_replace(" ", "-",$image3->title) . '_' . str_replace(" ", "-", $file->getClientOriginalName());
+            $image3->description = $request->get('description3');
             if (!empty($file))
                 Storage::put('public/products/' . $image3->name, file_get_contents($request->file('image3')->getRealPath()));
-            $image3->title = $request->get('title3');
-            $image3->description = $request->get('description3');
             $image3->save();
         }
-
         return redirect('/admin/products/show')->with('success', 'Produsul a fost creat!');
     }
 
@@ -143,8 +133,8 @@ class ProductController extends Controller
         $file =  $request->file('image1');
         $image1 = Image_Product::where('product_id', $product->id)->first();
         $image1->update([
-            'name' => empty($file) ? $image1->name : ($product->name . '_' . $file->getClientOriginalName()),
             'title'=>$request->input('title1'),
+            'name' => empty($file) ? $image1->name : ($product->name . str_replace(" ", "-",$image1->title) . '_' . str_replace(" ", "-", $file->getClientOriginalName())),
             'description' =>$request->input('description1'),
         ]);
         $image1->save();
@@ -155,8 +145,8 @@ class ProductController extends Controller
         if($file2 && !empty($file2)) {
             $image2 = Image_Product::where('product_id', $product->id)->get()[1];
             $image2->update([
-                'name' => empty($file2) ? $image2->name : ($product->name . '_' . $file2->getClientOriginalName()),
                 'title'=>$request->input('title2'),
+                'name' => empty($file2) ? $image2->name : ($product->name . str_replace(" ", "-",$image2->title) . '_' . str_replace(" ", "-", $file2->getClientOriginalName())),
                 'description' =>$request->input('description2'),
             ]);
             $image2->save();
@@ -168,8 +158,8 @@ class ProductController extends Controller
         if($file3 && !empty($file3)) {
             $image3 = Image_Product::where('product_id', $product->id)->get()[2];
             $image3->update([
-                'name' => empty($file3) ? $image3->name : ($product->name . '_' . $file3->getClientOriginalName()),
                 'title'=>$request->input('title3'),
+                'name' => empty($file3) ? $image3->name : ($product->name . str_replace(" ", "-",$image3->title) . '_' . str_replace(" ", "-", $file3->getClientOriginalName())),
                 'description' =>$request->input('description3'),
             ]);
             $image3->save();
@@ -181,20 +171,19 @@ class ProductController extends Controller
         if($file_add1  && !empty($file_add1)) {
             $image_add1 = new Image_Product;
             $image_add1->product_id = $id;
-            $image_add1->name = $product->name . '_' . $file_add1->getClientOriginalName();
             $image_add1->title = $request->get('title_new1');
+            $image_add1->name = $product->name . str_replace(" ", "-",$image_add1->title) . '_' . str_replace(" ", "-", $file_add1->getClientOriginalName());
             $image_add1->description = $request->get('description_new1');
             $image_add1->save();
             Storage::put('public/products/' . $image_add1->name, file_get_contents($file_add1->getRealPath()));
-
         }
 
         $file_add2 =  $request->file('image_add2');
         if($file_add2  && !empty($file_add2)) {
             $image_add2 = new Image_Product;
             $image_add2->product_id = $id;
-            $image_add2->image_name = $product->name . '_' . $file_add2->getClientOriginalName();
             $image_add2->title = $request->get('title_new2');
+            $image_add2->name = $product->name . str_replace(" ", "-",$image_add2->title) . '_' . str_replace(" ", "-", $file_add2->getClientOriginalName());
             $image_add2->description = $request->get('description_new2');
             $image_add2->save();
             Storage::put('public/products/' . $image_add2->name, file_get_contents($file_add2->getRealPath()));
@@ -206,27 +195,12 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->delete();
-
         $images = Image_Product::where('product_id', $id)->get();
         foreach ($images as $img) {
             $img->delete();
         }
         return redirect('/admin/products/show')->with('success', 'Produsul a fost șters!');
     }
-
-//    public function toProduct($slug)
-//    {
-//        $slug = explode('-', $slug);
-//        $id = end($slug );
-//        $product = Product::find($id);
-//
-//        if ($product->lang->first()->language_name !== app()->getLocale())
-//            return redirect()->route('welcome');
-//        return view('product_page')->with([
-//            'product'=> $product,
-//            'slug' => $slug
-//        ]);
-//    }
 
     public function destroyImage(Request $request)
     {

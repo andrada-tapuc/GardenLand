@@ -54,11 +54,11 @@ class ServiceController extends Controller
         $image1->service_id = $service->id;
         if($request->hasFile('image1')) {
             $file = $request->file('image1');
-            $image1->name = $service->name . '_' . $file->getClientOriginalName();
+            $image1->title = $request->get('title1');
+            $image1->name = $service->name . str_replace(" ", "-",$image1->title) . '_' .  str_replace(" ", "-", $file->getClientOriginalName());
+            $image1->description = $request->get('description1');
             if (!empty($file))
                 Storage::put('public/services/' . $image1->name, file_get_contents($request->file('image1')->getRealPath()));
-            $image1->title = $request->get('title1');
-            $image1->description = $request->get('description1');
             $image1->save();
         }
 
@@ -66,11 +66,11 @@ class ServiceController extends Controller
             $image2 = new Image_Service;
             $image2->service_id = $service->id;
             $file = $request->file('image2');
-            $image2->name = $service->name . '_' . $file->getClientOriginalName();
+            $image2->description = $request->get('description2');
+            $image2->title = $request->get('title2');
+            $image2->name = $service->name . str_replace(" ", "-",$image2->title) . '_' .  str_replace(" ", "-", $file->getClientOriginalName());
             if (!empty($file))
                 Storage::put('public/services/' . $image2->name, file_get_contents($request->file('image2')->getRealPath()));
-            $image2->title = $request->get('title2');
-            $image2->description = $request->get('description2');
             $image2->save();
         }
 
@@ -78,11 +78,11 @@ class ServiceController extends Controller
             $image3 = new Image_Service;
             $image3->service_id = $service->id;
             $file = $request->file('image3');
-            $image3->name = $service->name . '_' . $file->getClientOriginalName();
+            $image3->description = $request->get('description3');
+            $image3->title = $request->get('title3');
+            $image3->name = $service->name . str_replace(" ", "-",$image3->title) . '_' .  str_replace(" ", "-", $file->getClientOriginalName());
             if (!empty($file))
                 Storage::put('public/services/' . $image3->name, file_get_contents($request->file('image3')->getRealPath()));
-            $image3->title = $request->get('title3');
-            $image3->description = $request->get('description3');
             $image3->save();
         }
 
@@ -94,7 +94,7 @@ class ServiceController extends Controller
         $service = Service::find($id);
         return view('services.edit')->with([
             'service'=> $service,
-            'allCat' => Services_category::index(),
+            'allCat' => Services_category::all(),
             compact('service')
         ]);
     }
@@ -137,8 +137,8 @@ class ServiceController extends Controller
         $file =  $request->file('image1');
         $image1 = Image_Service::where('service_id', $service->id)->first();
         $image1->update([
-            'name' => empty($file) ? $image1->name : ($service->name . '_' . $file->getClientOriginalName()),
             'title'=>$request->input('title1'),
+            'name' => empty($file) ? $image1->name : ($service->name . str_replace(" ", "-",$image1->title) . '_' .  str_replace(" ", "-", $file->getClientOriginalName())),
             'description' =>$request->input('description1'),
         ]);
         $image1->save();
@@ -149,8 +149,8 @@ class ServiceController extends Controller
         if($file2 && !empty($file2)) {
             $image2 = Image_Service::where('service_id', $service->id)->get()[1];
             $image2->update([
-                'name' => empty($file2) ? $image2->name : ($service->name . '_' . $file2->getClientOriginalName()),
                 'title'=>$request->input('title2'),
+                'name' => empty($file2) ? $image2->name : ($service->name . str_replace(" ", "-",$image2->title) . '_' .  str_replace(" ", "-", $file2->getClientOriginalName())),
                 'description' =>$request->input('description2'),
             ]);
             $image2->save();
@@ -162,8 +162,8 @@ class ServiceController extends Controller
         if($file3 && !empty($file3)) {
             $image3 = Image_Service::where('service_id', $service->id)->get()[2];
             $image3->update([
-                'name' => empty($file3) ? $image3->name : ($service->name . '_' . $file3->getClientOriginalName()),
                 'title'=>$request->input('title3'),
+                'name' => empty($file3) ? $image3->name : ($service->name . str_replace(" ", "-",$image3->title) . '_' .  str_replace(" ", "-", $file3->getClientOriginalName())),
                 'description' =>$request->input('description3'),
             ]);
             $image3->save();
@@ -175,8 +175,8 @@ class ServiceController extends Controller
         if($file_add1  && !empty($file_add1)) {
             $image_add1 = new Image_Service;
             $image_add1->service_id = $id;
-            $image_add1->name = $service->name . '_' . $file_add1->getClientOriginalName();
             $image_add1->title = $request->get('title_new1');
+            $image_add1->name = $service->name . str_replace(" ", "-",$image_add1->title) . '_' .  str_replace(" ", "-", $file_add1->getClientOriginalName());
             $image_add1->description = $request->get('description_new1');
             $image_add1->save();
             Storage::put('public/services/' . $image_add1->name, file_get_contents($file_add1->getRealPath()));
@@ -187,8 +187,8 @@ class ServiceController extends Controller
         if($file_add2  && !empty($file_add2)) {
             $image_add2 = new Image_Service;
             $image_add2->service_id = $id;
-            $image_add2->image_name = $service->name . '_' . $file_add2->getClientOriginalName();
             $image_add2->title = $request->get('title_new2');
+            $image_add2->name = $service->name . str_replace(" ", "-",$image_add2->title) . '_' .  str_replace(" ", "-", $file_add2->getClientOriginalName());
             $image_add2->description = $request->get('description_new2');
             $image_add2->save();
             Storage::put('public/services/' . $image_add2->name, file_get_contents($file_add2->getRealPath()));
@@ -206,18 +206,6 @@ class ServiceController extends Controller
             $img->delete();
         }
         return redirect('/admin/services/show')->with('success', 'Serviciul a fost șters!');
-    }
-
-    public function toService($slug)
-    {
-        $slug = explode('-', $slug);
-        $id = end($slug );
-        $service = Service::find($id);
-
-        return view('service_page')->with([
-            'service'=> $service,
-            'slug' => $slug
-        ]);
     }
 
     public function destroyImage(Request $request)

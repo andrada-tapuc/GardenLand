@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Image_Product;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Products_category;
@@ -90,11 +91,16 @@ class ProductCategoryController extends Controller
     public function destroy($id)
     {
         $category = Products_category::find($id);
+
+        $products = Product::where('category_id', $id)->get();
+        foreach ($products as $prod){
+            $images = Image_Product::where('product_id', $prod->id)->get();
+            foreach ($images as $img) {
+                $img->delete();
+            }
+            $prod->delete();
+        }
         $category->delete();
-//        $category_lang = Products_category_Lang::where('category_id', $id)->get(); imaginile
-//        foreach ($category_lang as $item) {
-//            $item->delete();
-//        }
         return redirect('/admin/categories/products/show')->with('success', 'Categoria a fost ștearsă!');
     }
 }

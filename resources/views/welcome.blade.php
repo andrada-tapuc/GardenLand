@@ -29,7 +29,7 @@
         </div>
         <div class="container p-0">
             <nav class="navbar navbar-expand-lg navbar-light ">
-                <a class="navbar-brand pull-right" href="#">Garden Land</a>
+                <a class="navbar-brand pull-right title-page" href="#">Garden Land</a>
                 <p class="navbar-subtitle">Din generație în generație, cu eleganță și încredere!</p>
             </nav>
         </div>
@@ -67,7 +67,7 @@
                             <div class="mm-3column">
                                 <span class="categories-list">
                                     <ul>
-                                        <span>{{$cat->name_category}}</span>
+                                        <a href="#" id="{{$cat->id}}" data-name="{{$cat->name_category}}" class="category-click-service"><span>{{$cat->name_category}}</span></a>
                                         @foreach($allServices as $serv)
                                             @if($serv->category_id === $cat->id)
                                                 <a><li><button type="button" class="btn" data-toggle="modal" data-target="#modal{{$serv->id}}">{{$serv->name}}</button></li></a>
@@ -225,7 +225,7 @@
         <ul class="card-list">
             @foreach($allCat as $cat)
             <li class="card">
-                <a class="card-image card-supercategory" href="" target="_blank" data-name ="{{ $cat->name_category }}" data-category="{{$cat->id}}" style="background-image: url{{asset('storage/categories/'.$cat->image->name)}});" data-image-full="{{asset('storage/categories/'.$cat->image->name)}}">
+                <a class="card-image card-supercategory category-click-service" href="#" id="{{$cat->id}}" target="_blank" data-name ="{{ $cat->name_category }}" data-category="{{$cat->id}}" style="background-image: url{{asset('storage/categories/'.$cat->image->name)}});" data-image-full="{{asset('storage/categories/'.$cat->image->name)}}">
                     <img src="{{asset('storage/categories/'.$cat->image->name)}}" alt={{$cat->name_category}} />
                 </a>
                 <a class="card-description" target="_blank">

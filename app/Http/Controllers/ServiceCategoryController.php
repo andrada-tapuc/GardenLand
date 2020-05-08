@@ -75,7 +75,7 @@ class ServiceCategoryController extends Controller
         $image->category_id = $category->id;
         if($request->hasFile('image')) {
             $file = $request->file('image');
-            $image->name = $category->name_category . '_' . $file->getClientOriginalName();
+            $image->name = $category->name_category . '_' . str_replace(" ", "-",$file->getClientOriginalName());
             if (!empty($file))
                 Storage::put('public/categories/' . $image->name, file_get_contents($request->file('image')->getRealPath()));
             $image->save();
@@ -113,7 +113,7 @@ class ServiceCategoryController extends Controller
             $file =  $request->file('image1');
             $image1 = Image_Category::where('category_id', $category->id)->first();
             $image1->update([
-                'name' => empty($file) ? $image1->name : ($category->name_category . '_' . $file->getClientOriginalName()),
+                'name' => empty($file) ? $image1->name : ($category->name_category . '_' . str_replace(" ", "-",$file->getClientOriginalName())),
             ]);
             $image1->save();
             if (!empty($file))
@@ -139,7 +139,7 @@ class ServiceCategoryController extends Controller
         $file =  $request->file('image1');
         $image1 = Image_Category::where('category_id', $category->id)->first();
         $image1->update([
-            'name' => empty($file) ? $image1->name : ($category->name_category . '_' . $file->getClientOriginalName()),
+            'name' => empty($file) ? $image1->name : ($category->name_category . '_' . str_replace(" ", "-",$file->getClientOriginalName())),
         ]);
         $image1->save();
         if (!empty($file))
@@ -151,7 +151,20 @@ class ServiceCategoryController extends Controller
     public function destroy($id)
     {
         $category = Services_category::find($id);
+        $services = Service::where('category_id', $id)->get();
+        foreach ($services as $serv) {
+            $images = Image_Service::where('service_id', $serv->id)->get();
+            foreach ($images as $img) {
+                $img->delete();
+            }
+            $serv->delete();
+        }
         $category->delete();
+
+        $imgs = Image_Category::where('category_id', $id);
+        foreach ($imgs as $img) {
+            $img->delete();
+        }
         return redirect('/admin/categories/services/show')->with('success', 'Categoria a fost ștearsă!');
     }
 }
